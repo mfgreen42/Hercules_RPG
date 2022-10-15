@@ -39,11 +39,16 @@ hydras_attacks = ['Vemon Bite','Fire Ball','Multi Razor Bites']
 
 cerberus = {
     'health': 100,
-    'attack power': 10,
-    'attack 1': 'Snake Tail Whip',
-    'attack 2': 'Acid Drool',
-    'attack 3': 'Shredding Bite'
-}
+    'attack power': 10}
+cerberus_attack_list = ['Snake Tail Whip','Acid Drool','Shredding Bite']
+
+def gift_from_the_gods():
+    gift = random.int(50, 100)
+    hercules['health'] = hercules['health'] + gift
+    print(f"""
+    Hercules, you have been given a Healing Elixor from the Gods! 
+        Your health has been restored by {gift} points. You now have {hercules['health']}""")
+
 
 def hercules_attack_lion():#should be able to choose attack
         user_input = input('What attack would you like to use against the vicious Nemean Lion ? Sword Slash, Flying Side Kick or Skull Crusher :')
@@ -88,7 +93,27 @@ def hercules_attack_hydra():
                 print(f'Skull Crusher caused 25 damage points. The Lernaean Hydras health is now {hydra["health"]}')
 
 def hercules_attack_cerberus():
-    pass
+    user_input = input('What attack would you like to use against the Lernaean Hydra ? Sword Slash, Flying Side Kick or Skull Crusher :')
+    if user_input == 'Sword Slash':
+            hydra['health'] = hydra['health'] - 25
+            if hydra['health'] == 0:
+                print('You have defeated the vicious Lernaean Hydra!! Do you think you can handle the impossible nine-headed Lernaean Hydra? ')
+            else:
+                print(f'Sword Slash caused 25 damage points. The Lernaean Hydras health is now {hydra["health"]}')
+    if user_input == 'Flying Side Kick':
+            hydra['health'] = hydra['health'] - 25
+            if hydra['health'] == 0:
+                print('You have defeated the vicious Lernaean Hydra!! Do you think you can handle the impossible nine-headed Lernaean Hydra? ')
+            else:
+                print(f'Flying Side Kick caused 25 damage points. The Lernaean Hydras health is now {hydra["health"]}')
+    if user_input == 'Skull Crusher':
+            hydra['health'] = hydra['health'] - 25
+            if hydra['health'] == 0:
+                print('You have defeated the vicious Lernaean Hydra!! Do you think you can handle the impossible nine-headed Lernaean Hydra? ')
+            else:
+                print(f'Skull Crusher caused 25 damage points. The Lernaean Hydras health is now {hydra["health"]}')
+
+    
 
 
 def lion_attack(): #random attatck 
@@ -106,20 +131,24 @@ def hydra_attack(): #random attatck
     print(f'Your health level is now {hercules["health"]}')
 
 def cerberus_attack(): #random attatck
-    pass
+    attack = random.choice(cerberus_attack_list)
+    hercules['health'] = hercules['health'] - cerberus['attack power']
+    print(f'Cerberus has attacked you with {attack} causing {cerberus["attack power"]} damage.')
+    print(f'Your health level is now {hercules["health"]}')
+
 
 def attack(): #As a developer, I want to use an Attack() function that will terminate when Hercules or an enemy’s health reaches zero.
     pass
 
 def run_game():
     print_greeting()
-    while lion['health'] != 0:
+    while lion['health'] != 0 or hercules['health'] != 0:
         lion_attack()
         hercules_attack_lion()
-    while hydra['health'] != 0:
+    while hydra['health'] != 0 or hercules['health'] != 0:
         hydra_attack()
         hercules_attack_hydra()
-
+    gift_from_the_gods()
 
 
 run_game()
