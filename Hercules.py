@@ -1,4 +1,5 @@
 
+import random
 
 def print_greeting():
     print("""
@@ -25,30 +26,27 @@ hercules = {
 
 lion = {
     'health': 100,
-    'attack power': 15,
-    'attack 1': 'Raging Claw Strike',
-    'attack 2': 'Deafening Roar',
-    'attack 3': 'Razor Bite'
+    'attack power': 10,
 }
+lions_attacks = ['Raging Claw Strike', 'Deafening Roar','Razor Bite']
+
 
 hydra = {
     'health': 100,
-    'attack power': 15,
-    'attack 1': 'Vemon Bite',
-    'attack 2': 'Fire Ball',
-    'attack 3': 'Multi Razor Bites'
-}
+    'attack power': 10}
+hydras_attacks = ['Vemon Bite','Fire Ball','Multi Razor Bites']
+
 
 cerberus = {
     'health': 100,
-    'attack power': 15,
+    'attack power': 10,
     'attack 1': 'Snake Tail Whip',
     'attack 2': 'Acid Drool',
     'attack 3': 'Shredding Bite'
 }
 
 def hercules_attack_lion():#should be able to choose attack
-        user_input = input('what attack would you like to use against the vicious Nemean Lion ? Sword Slash, Flying Side Kick or Skull Crusher :')
+        user_input = input('What attack would you like to use against the vicious Nemean Lion ? Sword Slash, Flying Side Kick or Skull Crusher :')
         if user_input == 'Sword Slash':
             lion['health'] = lion['health'] - 25
             if lion['health'] == 0:
@@ -69,19 +67,43 @@ def hercules_attack_lion():#should be able to choose attack
                 print(f'Skull Crusher caused 25 damage points. The Nemean Lions health is now {lion["health"]}')
 
 def hercules_attack_hydra():
-    pass
+    user_input = input('What attack would you like to use against the Lernaean Hydra ? Sword Slash, Flying Side Kick or Skull Crusher :')
+    if user_input == 'Sword Slash':
+            hydra['health'] = hydra['health'] - 25
+            if hydra['health'] == 0:
+                print('You have defeated the vicious Lernaean Hydra!! Do you think you can handle the impossible nine-headed Lernaean Hydra? ')
+            else:
+                print(f'Sword Slash caused 25 damage points. The Lernaean Hydras health is now {hydra["health"]}')
+    if user_input == 'Flying Side Kick':
+            hydra['health'] = hydra['health'] - 25
+            if hydra['health'] == 0:
+                print('You have defeated the vicious Lernaean Hydra!! Do you think you can handle the impossible nine-headed Lernaean Hydra? ')
+            else:
+                print(f'Flying Side Kick caused 25 damage points. The Lernaean Hydras health is now {hydra["health"]}')
+    if user_input == 'Skull Crusher':
+            hydra['health'] = hydra['health'] - 25
+            if hydra['health'] == 0:
+                print('You have defeated the vicious Lernaean Hydra!! Do you think you can handle the impossible nine-headed Lernaean Hydra? ')
+            else:
+                print(f'Skull Crusher caused 25 damage points. The Lernaean Hydras health is now {hydra["health"]}')
 
 def hercules_attack_cerberus():
     pass
 
 
 def lion_attack(): #random attatck 
-    pass
+    attack = random.choice(lions_attacks)
+    hercules['health'] = hercules['health'] - lion['attack power']
+    print(f'The Nemean Lion has attacked you with {attack} causing {lion["attack power"]} damage.')
+    print(f'Your health level is now {hercules["health"]}')
 
 
 
 def hydra_attack(): #random attatck
-    pass
+    attack = random.choice(hydras_attacks)
+    hercules['health'] = hercules['health'] - hydra['attack power']
+    print(f'The Nemean Lion has attacked you with {attack} causing {hydra["attack power"]} damage.')
+    print(f'Your health level is now {hercules["health"]}')
 
 def cerberus_attack(): #random attatck
     pass
@@ -91,9 +113,12 @@ def attack(): #As a developer, I want to use an Attack() function that will term
 
 def run_game():
     print_greeting()
-    hercules_attack_lion()
-    lion_attack()
-
+    while lion['health'] != 0:
+        lion_attack()
+        hercules_attack_lion()
+    while hydra['health'] != 0:
+        hydra_attack()
+        hercules_attack_hydra()
 
 
 
